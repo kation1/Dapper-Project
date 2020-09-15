@@ -1,0 +1,28 @@
+﻿@model Questions
+@{
+    ViewData["Title"] = "EditQuestion";
+}
+
+<b style="color:green">@ViewBag.Message</b>
+
+<h2>Edit Question</h2>
+
+<form method="post" action="/QA/UpdateQuestion">
+    Title: <input type="text" name="Title" value="@Model.Title" /> <br />
+
+    Details: <textarea name="Detail">@Model.Detail</textarea> <br />
+
+    Category: <select name="Category" id="Category" value="@Model.Category">
+        <option value="Help">Coding Help</option>
+        <option value="Errors">Errors</option>
+        <option value="Discussion">Discussion</option>
+        <option value="Fun">Fun stuff</option>
+    </select><br />
+
+    Tags: <input type="text" name="Tags" value="@Model.Tags" />
+
+    <input type="hidden" name="Username" value="@Model.Username" />
+    <input type="hidden" name="ID" value="@Model.ID" />
+    <input type="submit" value="Submit" />
+</form> 
+
