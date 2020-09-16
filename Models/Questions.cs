@@ -9,6 +9,7 @@ using Dapper;
 
 namespace Dapper_Project.Models
 {
+    //Data Access Layer
     [Table("Questions")]
     public class Questions
     {
