@@ -1,0 +1,45 @@
+﻿@model Thread
+
+@{
+    ViewData["Title"] = "ReadAnswers";
+}
+
+<h2>Read Answers</h2>
+
+<h3>@Model.Q.Title</h3>
+<h4>Posted by: @Model.Q.Username</h4>
+<h6>Category: @Model.Q.Category</h6>
+
+<p>
+    @Model.Q.Detail
+</p>
+
+<table>
+
+    Answers:
+    @foreach(Answers a in Model.A)
+    {
+    <tr>
+        <td>
+            Upvotes: @a.UpVotes
+        </td>
+        <br />
+        <td>
+            @a.Detail
+
+        </td>
+        <br />
+        <td>
+            Posted by: @a.Username
+        </td>
+        <br />
+        <td>
+            Posted at: @a.Posted
+        </td>
+        <br />
+    </tr>
+
+    }
+
+</table>
+

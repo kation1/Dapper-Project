@@ -11,7 +11,7 @@
 
         <tr>
             <td>
-                @questions.Title <br />
+                <a href="/QA/ReadAnswers?id=@questions.ID"> @questions.Title</a>  <br />
             </td>
             <td>
                 @questions.Detail <br />
@@ -25,6 +25,10 @@
             <td>
                 <a href="/QA/EditQuestion?=@questions.ID">Edit</a>
             </td>
+            <td>
+                <a href="/QA/RemoveQuestion?=@questions.ID">Delete</a>
+            </td>
+            
         </tr>
     }
 </table>

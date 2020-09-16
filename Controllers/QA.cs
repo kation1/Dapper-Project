@@ -22,9 +22,6 @@ namespace Dapper_Project.Controllers
 
         public IActionResult AskQuestion()
         {
-            
-
-
             return View();
         }
 
@@ -49,6 +46,30 @@ namespace Dapper_Project.Controllers
             ViewBag.Message = "Your entry has been saved.";
             Questions.Update(id, username, title, detail, category, tags);
             return RedirectToAction("ReadQuestions", "QA");
+        }
+
+        public IActionResult RemoveQuestion(int id)
+        {
+            Questions.Delete(id);
+
+            return RedirectToAction("ReadQuestions", "QA");
+        }
+
+        public IActionResult RemoveAnswer(int id)
+        {
+            Answers.Delete(id);
+
+            return RedirectToAction("ReadAnswers", "QA");
+
+        }
+
+        public IActionResult ReadAnswers(int id)
+        {
+            Thread t = new Thread();
+            t.A = Answers.ReadAll(id);
+            t.Q = Questions.Read(id);
+
+            return View(t);
         }
 
         /*

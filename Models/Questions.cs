@@ -76,5 +76,12 @@ namespace Dapper_Project.Models
 
         }
         
+
+        public static void Delete(int id)
+        {
+            IDbConnection db = new SqlConnection(server);
+            db.Delete( new Questions{ID = id});
+
+        }
     }
 }
