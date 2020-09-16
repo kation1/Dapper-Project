@@ -14,30 +14,35 @@
     @Model.Q.Detail
 </p>
 
+Answers:
+<br />
+<a href="/QA/WriteAnswer?id=@Model.Q.ID"> Add an Answer:  </a>
+<br />
 <table>
 
-    Answers:
-    @foreach(Answers a in Model.A)
+    @foreach (Answers a in Model.A)
     {
-    <tr>
-        <td>
-            Upvotes: @a.UpVotes
-        </td>
-        <br />
-        <td>
-            @a.Detail
+        <tr>
+            <td>
+                Upvotes: @a.UpVotes
+            </td>
 
-        </td>
-        <br />
-        <td>
-            Posted by: @a.Username
-        </td>
-        <br />
-        <td>
-            Posted at: @a.Posted
-        </td>
-        <br />
-    </tr>
+            <td>
+                @a.Detail
+
+            </td>
+
+            <td>
+                Posted by: @a.Username
+            </td>
+
+            <td>
+                Posted at: @a.Posted
+            </td>
+            <td>
+                <a href="/QA/RemoveAnswer?thisID=@a.ID">Delete</a>
+            </td>
+        </tr>
 
     }
 

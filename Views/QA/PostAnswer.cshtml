@@ -1,0 +1,27 @@
+﻿@model Thread
+@{
+    ViewData["Title"] = "PostAnswer";
+}
+
+<h2>Post Answer below:</h2>
+
+<b style="color:green">@ViewBag.Message</b>
+
+<form method="post" action="/QA/PostAnswer">
+
+    Question Title: @Model.Q.Title <br />
+    Question body: @Model.Q.Detail <br />
+
+
+    
+    Details: <textarea name="detail"> </textarea> <br />
+    Tags: <input type="text" name="Tags"  />
+
+    <input type="hidden" name="questionID" value="@Model.Q.ID" />
+    <input type="hidden" name="username" value="@Model.Q.Username" />
+    <input type="submit" value="Submit" />
+
+
+    
+</form>
+

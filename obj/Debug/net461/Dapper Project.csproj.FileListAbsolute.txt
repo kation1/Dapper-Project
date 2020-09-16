@@ -360,3 +360,5 @@ C:\devbuild4\Labs\QL StackOverflow\Dapper Project\obj\Debug\net461\Razor\Views\Q
 C:\devbuild4\Labs\QL StackOverflow\Dapper Project\obj\Debug\net461\Razor\Views\QA\AskQuestion.cshtml.g.cs
 C:\devbuild4\Labs\QL StackOverflow\Dapper Project\obj\Debug\net461\Razor\Views\QA\EditQuestion.cshtml.g.cs
 C:\devbuild4\Labs\QL StackOverflow\Dapper Project\obj\Debug\net461\Razor\Views\QA\ReadAnswers.cshtml.g.cs
+C:\devbuild4\Labs\QL StackOverflow\Dapper Project\obj\Debug\net461\Razor\Views\QA\PostAnswer.cshtml.g.cs
+C:\devbuild4\Labs\QL StackOverflow\Dapper Project\obj\Debug\net461\Razor\Views\QA\WriteAnswer.cshtml.g.cs

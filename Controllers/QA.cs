@@ -50,16 +50,21 @@ namespace Dapper_Project.Controllers
 
         public IActionResult RemoveQuestion(int id)
         {
-            Questions.Delete(id);
+            Thread t = Thread.AssembleThread(id);
+            Thread.DeleteThread(t);
 
             return RedirectToAction("ReadQuestions", "QA");
         }
 
-        public IActionResult RemoveAnswer(int id)
+        public IActionResult RemoveAnswer(int thisID)
         {
-            Answers.Delete(id);
+            Answers a = Answers.Read(thisID);
+            
+            int qid = a.QuestionID;
+            Answers.Delete(thisID);
+            
 
-            return RedirectToAction("ReadAnswers", "QA");
+            return RedirectToAction("ReadAnswers", "QA", new { id = qid});
 
         }
 
@@ -71,6 +76,22 @@ namespace Dapper_Project.Controllers
 
             return View(t);
         }
+
+        public IActionResult PostAnswer(string username, string detail, int questionID)
+        {
+            ViewBag.Message = "Your Answer has been posted.";
+            Answers.Create(username, detail, questionID);
+            Thread t = Thread.AssembleThread(questionID);
+            return View("ReadAnswers", t);
+
+        }
+
+        public IActionResult WriteAnswer(int id)
+        {
+            Thread t = Thread.AssembleThread(id);
+            return View("PostAnswer", t);
+        }
+
 
         /*
          //Prints comments in comments thread. 
