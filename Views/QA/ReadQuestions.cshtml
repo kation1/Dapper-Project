@@ -25,18 +25,18 @@
             @if (ViewBag.username == questions.Username)
             {
                 <td>
-                    <a href="/QA/EditQuestion?=@questions.ID">Edit</a>
+                    <a href="/QA/EditQuestion?=@questions.ID"><button1>Edit</button1></a>
                 </td>
                 <td>
-                    <a href="/QA/RemoveQuestion?=@questions.ID">Delete</a>
+                    <a href="/QA/RemoveQuestion?=@questions.ID"><button2>Delete</button2></a>
                 </td>
                 <td>
                     @if (questions.Status == 1)
                     {
-                        <a href="/QA/CompletionStatus?=@questions.ID&status=0">Mark Closed</a>}
+                        <a href="/QA/CompletionStatus?=@questions.ID&status=0"><button3>Mark Closed</button3></a>}
                     @if (questions.Status == 0)
                     {
-                        <a href="/QA/CompletionStatus?=@questions.ID&status=1">Mark Open</a>}
+                        <a href="/QA/CompletionStatus?=@questions.ID&status=1"><button3>Mark Open</button3></a>}
                 </td>
             }
         </tr>

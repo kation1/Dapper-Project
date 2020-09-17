@@ -211,7 +211,6 @@ C:\devbuild4\Labs\QL StackOverflow\Dapper Project\bin\Debug\net461\System.Xml.Xm
 C:\devbuild4\Labs\QL StackOverflow\Dapper Project\bin\Debug\net461\System.Xml.XmlSerializer.dll
 C:\devbuild4\Labs\QL StackOverflow\Dapper Project\bin\Debug\net461\System.Xml.XPath.dll
 C:\devbuild4\Labs\QL StackOverflow\Dapper Project\bin\Debug\net461\System.Xml.XPath.XDocument.dll
-C:\devbuild4\Labs\QL StackOverflow\Dapper Project\obj\Debug\net461\Dapper Project.csprojAssemblyReference.cache
 C:\devbuild4\Labs\QL StackOverflow\Dapper Project\obj\Debug\net461\Dapper Project.exe.config
 C:\devbuild4\Labs\QL StackOverflow\Dapper Project\obj\Debug\net461\Dapper Project.AssemblyInfoInputs.cache
 C:\devbuild4\Labs\QL StackOverflow\Dapper Project\obj\Debug\net461\Dapper Project.AssemblyInfo.cs
