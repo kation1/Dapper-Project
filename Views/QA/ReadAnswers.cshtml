@@ -30,7 +30,7 @@ Answers:
             @a.Detail
             <br />
         </td>
-        
+
         <td>
             Posted by: @a.Username
             <br />
@@ -42,8 +42,16 @@ Answers:
         </td>
 
         <td>
-             Upvotes: <a href="/QA/UpVoteAnswer?answerID=@a.ID"> <input type="button" value="@a.UpVotes"/> </a>
-                      <br />
+            <a href="/QA/UpVoteAnswer?answerID=@a.ID"> <input type="button" value="+" /> </a>
+            <br />
+        </td>
+        <td>
+            @a.UpVotes
+            <br/>
+        </td>
+        <td>
+            <a href="/QA/DownVoteAnswer?answerID=@a.ID"> <input type="button" value="-" /> </a>
+            <br />
         </td>
 
         @if (ViewBag.username == a.Username || ViewBag.username == Model.Q.Username)
@@ -52,7 +60,7 @@ Answers:
                 <a href="/QA/RemoveAnswer?thisID=@a.ID">Delete</a>
             </td>
         }
-        </tr>
+    </tr>
 
     }
 

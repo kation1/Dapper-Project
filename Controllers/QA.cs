@@ -112,6 +112,14 @@ namespace Dapper_Project.Controllers
             return View("ReadAnswers" , t);
         }
 
+        public IActionResult DownVoteAnswer(int answerID)
+        {
+            ViewBag.username = HttpContext.Request.Cookies["username"];
+            Answers.DownVoteAnswer(answerID);
+            Answers a = Answers.Read(answerID);
+            Thread t = Thread.AssembleThread(a.QuestionID);
+            return View("ReadAnswers", t);
+        }
         /*
         public IActionResult SearchCategory(string search)
         {

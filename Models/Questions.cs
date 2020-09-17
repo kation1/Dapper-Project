@@ -76,7 +76,6 @@ namespace Dapper_Project.Models
 
         }
         
-
         public static void Delete(int id)
         {
             IDbConnection db = new SqlConnection(server);
@@ -99,6 +98,7 @@ namespace Dapper_Project.Models
 
             return Q;
         }
+
         public static List<Questions> SearchCategory(string search)
         {
             IDbConnection db = new SqlConnection(server);
