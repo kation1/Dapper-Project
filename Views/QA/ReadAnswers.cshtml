@@ -54,7 +54,7 @@ Answers:
             <br />
         </td>
 
-        @if (ViewBag.username == a.Username || ViewBag.username == Model.Q.Username)
+        @if (ViewBag.username == a.Username || ViewBag.username == Model.Q.Username || ViewBag.username == "admin")
         {
             <td>
                 <a href="/QA/RemoveAnswer?thisID=@a.ID">Delete</a>

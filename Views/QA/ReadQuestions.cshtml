@@ -6,23 +6,42 @@
 <h2>Read Questions</h2>
 
 <table>
+    <tr>
+        <th>
+            Title
+        </th>
+        <th>
+            Detail
+        </th>
+        <th>
+            Category
+        </th>
+        <th>
+            Tags
+        </th>
+    </tr>
+
     @foreach (Questions questions in Model)
     {
+
 
         <tr>
             <td>
                 <a href="/QA/ReadAnswers?id=@questions.ID"> @questions.Title</a>  <br />
             </td>
+
+
             <td>
                 @questions.Detail <br />
             </td>
+
             <td>
                 @questions.Category <br />
             </td>
             <td>
                 @questions.Tags <br />
             </td>
-            @if (ViewBag.username == questions.Username)
+            @if (ViewBag.username == questions.Username || ViewBag.username == "admin")
             {
                 <td>
                     <a href="/QA/EditQuestion?=@questions.ID"><button1>Edit</button1></a>
@@ -39,7 +58,11 @@
                         <a href="/QA/CompletionStatus?=@questions.ID&status=1"><button3>Mark Open</button3></a>}
                 </td>
             }
+
+
         </tr>
+
+
     }
 </table>
 
@@ -51,6 +74,6 @@
         <option value="Detail">Detail</option>
         <option value="Title">Title</option>
     </select>
-    <input type="submit" value="Submit" />
+    <input type="submit" value="Search" />
 </form>
 

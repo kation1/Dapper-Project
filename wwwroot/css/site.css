@@ -5,6 +5,7 @@ body {
     padding-bottom: 20px;
     padding-left: 20px;
     padding-right: 20px;
+    background-color: #F2F2F2;
 }
 
 /* Wrapping element */
@@ -73,7 +74,7 @@ textarea {
         background-color: white;
     }
 
-table, tr, td {
+table, th, tr, td {
     border: 2px solid black;
     width: auto;
     padding: 5px;
