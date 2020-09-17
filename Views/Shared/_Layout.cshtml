@@ -34,6 +34,9 @@
                     <li><a asp-area="" asp-controller="QA" asp-action="AskQuestion">Post a Question</a></li>
                     <li><a asp-area="" asp-controller="QA" asp-action="ReadQuestions">All Questions</a></li>
 
+
+
+
                 </ul>
             </div>
         </div>
@@ -42,6 +45,14 @@
     <partial name="_CookieConsentPartial" />
 
     <div class="container body-content">
+        @if (ViewBag.username != "")
+        {
+            <p align="right">You are logged in as: @ViewBag.username</p>
+        }
+        else
+        {
+            <a href="/home"> Please Login </a>
+        }
         @RenderBody()
         <hr />
         <footer>

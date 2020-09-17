@@ -18,9 +18,7 @@ namespace Dapper_Project.Models
         public string Detail { get; set; }
         public int QuestionID { get; set; }
         //^Foreign Key from Questions
-
         public string Posted { get; set; }
-        
         public int UpVotes { get; set; }
         
 
@@ -36,7 +34,7 @@ namespace Dapper_Project.Models
         public static List<Answers> ReadAll(long Qid)
         {
             IDbConnection db = new SqlConnection(server);
-            List<Answers> A = db.Query<Answers>($"select * from [Answers] where Questionid = {Qid}").AsList<Answers>();
+            List<Answers> A = db.Query<Answers>($"select * from [Answers] where Questionid = {Qid} ORDER BY Upvotes desc").AsList<Answers>();
             
             return A;
         }
@@ -76,6 +74,8 @@ namespace Dapper_Project.Models
             db.Delete(new Answers { ID = id });
 
         }
+
+
 
     }
 }

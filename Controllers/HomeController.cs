@@ -12,7 +12,18 @@ namespace Dapper_Project.Controllers
     {
         public IActionResult Index()
         {
+            ViewBag.username = HttpContext.Request.Cookies["username"];
             return View();
+        }
+          
+        public IActionResult Login(string username)
+        {
+            HttpContext.Response.Cookies.Append("username", username);
+            //ViewBag.Name = username;
+            //return View();
+
+            return View("Index");
+            
         }
 
         public IActionResult AddQuestion()

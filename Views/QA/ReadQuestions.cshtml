@@ -9,27 +9,29 @@
     @foreach (Questions questions in Model)
     {
 
-        <tr>
-            <td>
-                <a href="/QA/ReadAnswers?id=@questions.ID"> @questions.Title</a>  <br />
-            </td>
-            <td>
-                @questions.Detail <br />
-            </td>
-            <td>
-                @questions.Category <br />
-            </td>
-            <td>
-                @questions.Tags <br />
-            </td>
+    <tr>
+        <td>
+            <a href="/QA/ReadAnswers?id=@questions.ID"> @questions.Title</a>  <br />
+        </td>
+        <td>
+            @questions.Detail <br />
+        </td>
+        <td>
+            @questions.Category <br />
+        </td>
+        <td>
+            @questions.Tags <br />
+        </td>
+        @if (ViewBag.username == questions.Username)
+        {
             <td>
                 <a href="/QA/EditQuestion?=@questions.ID">Edit</a>
             </td>
             <td>
                 <a href="/QA/RemoveQuestion?=@questions.ID">Delete</a>
             </td>
-            
-        </tr>
+        }
+    </tr>
     }
 </table>
 

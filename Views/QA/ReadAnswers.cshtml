@@ -22,26 +22,29 @@ Answers:
 
     @foreach (Answers a in Model.A)
     {
-        <tr>
-            <td>
-                Upvotes: @a.UpVotes
-            </td>
+    <tr>
+        <td>
+            Upvotes: @a.UpVotes
+        </td>
 
-            <td>
-                @a.Detail
+        <td>
+            @a.Detail
 
-            </td>
+        </td>
 
-            <td>
-                Posted by: @a.Username
-            </td>
+        <td>
+            Posted by: @a.Username
+        </td>
 
-            <td>
-                Posted at: @a.Posted
-            </td>
+        <td>
+            Posted at: @a.Posted
+        </td>
+        @if (ViewBag.username == a.Username || ViewBag.username == Model.Q.Username)
+        {
             <td>
                 <a href="/QA/RemoveAnswer?thisID=@a.ID">Delete</a>
             </td>
+        }
         </tr>
 
     }
