@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using Dapper_Project.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -111,7 +112,46 @@ namespace Dapper_Project.Controllers
             return View("ReadAnswers" , t);
         }
 
+        /*
+        public IActionResult SearchCategory(string search)
+        {
+            ViewBag.username = HttpContext.Request.Cookies["username"];
+            List<Questions> q = Questions.SearchCategory(search);
+            return View("ReadAnswers", q);
+        }
 
+        public IActionResult SearchTitle(string search)
+        {
+            ViewBag.username = HttpContext.Request.Cookies["username"];
+            List<Questions> q = Questions.SearchTitle(search);
+            return View("ReadAnswers", q);
+        }
+        public IActionResult SearchDetail(string search)
+        {
+            
+            
+            return View("ReadAnswers", q);
+        }
+        */
+
+        public IActionResult SearchQuestions(string Category, string Search)
+        {
+            ViewBag.username = HttpContext.Request.Cookies["username"];
+            List<Questions> q;
+            if (Category == "Category")
+            {
+                q = Questions.SearchCategory(Search);
+            }
+            else if (Category == "Detail")
+            {
+                q = Questions.SearchDetail(Search);
+            }
+            else
+            {
+                q = Questions.SearchTitle(Search);
+            }
+            return View("ReadQuestions", q);
+        }
         /*
          //Prints comments in comments thread. 
             Same user should be able to add multiple answers to the same question

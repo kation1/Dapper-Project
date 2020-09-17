@@ -28,19 +28,22 @@ Answers:
 
         <td>
             @a.Detail
-
+            <br />
         </td>
-
+        
         <td>
             Posted by: @a.Username
+            <br />
         </td>
 
         <td>
             Posted at: @a.Posted
+            <br />
         </td>
 
         <td>
              Upvotes: <a href="/QA/UpVoteAnswer?answerID=@a.ID"> <input type="button" value="@a.UpVotes"/> </a>
+                      <br />
         </td>
 
         @if (ViewBag.username == a.Username || ViewBag.username == Model.Q.Username)

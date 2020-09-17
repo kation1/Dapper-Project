@@ -84,15 +84,27 @@ namespace Dapper_Project.Models
             //db.Delete(Answers.Delete(new Answers { ID = id }));
         }
 
-        public static List<Questions> Search(string search)
+        public static List<Questions> SearchTitle(string search)
         {
             IDbConnection db = new SqlConnection(server);
-            List<Questions> Q = db.Query<Questions>($"select * Questions where Title, Detail, Category LIKE '%{search}%'").AsList();
-            //Need text box linked to search button to return all items that match ^    ^       ^
+            List<Questions> Q = db.Query<Questions>($"select * from Questions where Title LIKE '%{search}%'").AsList();
 
             return Q;
         }
 
+        public static List<Questions> SearchDetail(string search)
+        {
+            IDbConnection db = new SqlConnection(server);
+            List<Questions> Q = db.Query<Questions>($"select * from Questions where Detail LIKE '%{search}%'").AsList();
 
+            return Q;
+        }
+        public static List<Questions> SearchCategory(string search)
+        {
+            IDbConnection db = new SqlConnection(server);
+            List<Questions> Q = db.Query<Questions>($"select * from Questions where Category LIKE '%{search}%'").AsList();
+
+            return Q;
+        }
     }
 }
