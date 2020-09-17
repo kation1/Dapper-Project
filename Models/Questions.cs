@@ -25,7 +25,7 @@ namespace Dapper_Project.Models
 
         const string server = "Server=9QP7Q13\\SQLEXPRESS;Database=Slack;user id=sa;password=abc123";
 
-        public static Questions Read(long _id)
+        public static Questions Read(int _id)
         {
             IDbConnection db = new SqlConnection(server);
             Questions Q = db.Get<Questions>(_id);

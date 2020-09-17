@@ -37,11 +37,10 @@ namespace Dapper_Project.Controllers
             //return Content($"{tags}");
         }
 
-        public IActionResult EditQuestion(long id)
+        public IActionResult EditQuestion(int id)
         {
             ViewBag.username = HttpContext.Request.Cookies["username"];
             Questions questions = Questions.Read(id);
-
 
             return View(questions);
         }
@@ -120,27 +119,25 @@ namespace Dapper_Project.Controllers
             Thread t = Thread.AssembleThread(a.QuestionID);
             return View("ReadAnswers", t);
         }
-        /*
-        public IActionResult SearchCategory(string search)
+
+        public IActionResult EditAnswer(int ID)
         {
             ViewBag.username = HttpContext.Request.Cookies["username"];
-            List<Questions> q = Questions.SearchCategory(search);
-            return View("ReadAnswers", q);
+            Answers a = Answers.Read(ID);
+            ViewBag.ID = a.ID;
+            Thread t = Thread.AssembleThread(a.QuestionID);
+            return View(t);
         }
 
-        public IActionResult SearchTitle(string search)
+        public IActionResult UpdateAnswer(string detail, int ID)
         {
             ViewBag.username = HttpContext.Request.Cookies["username"];
-            List<Questions> q = Questions.SearchTitle(search);
-            return View("ReadAnswers", q);
+            ViewBag.Message = "Your entry has been saved.";
+            Answers a = Answers.Read(ID);
+            Answers.Update(a, detail);
+            Thread t = Thread.AssembleThread(a.QuestionID);
+            return View("ReadAnswers", t );
         }
-        public IActionResult SearchDetail(string search)
-        {
-            
-            
-            return View("ReadAnswers", q);
-        }
-        */
 
         public IActionResult SearchQuestions(string Category, string Search)
         {

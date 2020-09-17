@@ -371,3 +371,4 @@ C:\devbuild4\Labs\QL StackOverflow\Dapper Project\bin\Debug\net461\Microsoft.Vis
 C:\devbuild4\Labs\QL StackOverflow\Dapper Project\bin\Debug\net461\Remotion.Linq.dll
 C:\devbuild4\Labs\QL StackOverflow\Dapper Project\bin\Debug\net461\System.Interactive.Async.dll
 C:\devbuild4\Labs\QL StackOverflow\Dapper Project\obj\Debug\net461\Razor\Views\Home\Login.cshtml.g.cs
+C:\devbuild4\Labs\QL StackOverflow\Dapper Project\obj\Debug\net461\Razor\Views\QA\EditAnswer.cshtml.g.cs

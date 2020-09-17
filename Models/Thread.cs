@@ -11,7 +11,7 @@ namespace Dapper_Project.Models
 
         public List<Answers> A { get; set; }
 
-        public static Thread AssembleThread(int  id)
+        public static Thread AssembleThread(int id)
         {
             Thread t = new Thread();
             t.A = Answers.ReadAll(id);

@@ -55,17 +55,18 @@ namespace Dapper_Project.Models
             db.Insert(answers);
         }
 
-        public static void Update(string username, string detail, int questionID)
+        public static void Update(Answers answers, string detail)
         {
             IDbConnection db = new SqlConnection(server);
+            answers.Detail = detail;
+            /*
             Answers answers = new Answers()
             {
-                Username = username,
                 Detail = detail,
-                QuestionID = questionID,
-                Posted = $"Edited at {DateTime.Now}"
+                ID = answerID,
+                Posted = DateTime.Now.ToString()
             };
-
+            */
             db.Update(answers);
         }
 
