@@ -15,15 +15,14 @@ namespace Dapper_Project.Controllers
             ViewBag.username = HttpContext.Request.Cookies["username"];
             return View();
         }
-          
+
         public IActionResult Login(string username)
         {
-            HttpContext.Response.Cookies.Append("username", username);
-            //ViewBag.Name = username;
-            //return View();
-
-            return View("Index");
-            
+            if (username != null)
+            {
+                HttpContext.Response.Cookies.Append("username", username);
+            }
+            return RedirectToAction("Index");
         }
 
         public IActionResult AddQuestion()
@@ -31,6 +30,11 @@ namespace Dapper_Project.Controllers
             //ViewBag.PageName = "Add Question";
             return View();
 
+        }
+
+        public IActionResult ChangeUser()
+        {
+            return View("Login");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
