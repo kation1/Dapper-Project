@@ -10,10 +10,13 @@ namespace Dapper_Project.Controllers
 {
     public class QA : Controller
     {
+
         public IActionResult Index()
         {
             return View();
         }
+
+
 
         public IActionResult ReadQuestions()
         {
@@ -22,20 +25,24 @@ namespace Dapper_Project.Controllers
             return View(QS);
         }
 
+
+
         public IActionResult AskQuestion()
         {
             ViewBag.username = HttpContext.Request.Cookies["username"];
             return View();
         }
 
+
+
         public IActionResult AddQuestion(string username, string title, string detail, string category, string tags)
         {
             ViewBag.username = HttpContext.Request.Cookies["username"];
             Questions.Create(username, title, detail, category, tags);
-
             return RedirectToAction("ReadQuestions", "QA");
-            //return Content($"{tags}");
         }
+
+
 
         public IActionResult EditQuestion(int id)
         {
@@ -45,6 +52,8 @@ namespace Dapper_Project.Controllers
             return View(questions);
         }
 
+
+
         public IActionResult UpdateQuestion(int id, string username, string title, string detail, string category, string tags)
         {
             ViewBag.username = HttpContext.Request.Cookies["username"];
@@ -52,6 +61,8 @@ namespace Dapper_Project.Controllers
             Questions.Update(id, username, title, detail, category, tags);
             return RedirectToAction("ReadQuestions", "QA");
         }
+
+
 
         public IActionResult RemoveQuestion(int id)
         {
@@ -61,6 +72,8 @@ namespace Dapper_Project.Controllers
 
             return RedirectToAction("ReadQuestions", "QA");
         }
+
+
 
         public IActionResult RemoveAnswer(int thisID)
         {
@@ -75,6 +88,8 @@ namespace Dapper_Project.Controllers
 
         }
 
+
+
         public IActionResult ReadAnswers(int id)
         {
             ViewBag.username = HttpContext.Request.Cookies["username"];
@@ -84,6 +99,8 @@ namespace Dapper_Project.Controllers
             
             return View(t);
         }
+
+
 
         public IActionResult PostAnswer(string username, string detail, int questionID)
         {
@@ -95,12 +112,16 @@ namespace Dapper_Project.Controllers
 
         }
 
+
+
         public IActionResult WriteAnswer(int id)
         {
             ViewBag.username = HttpContext.Request.Cookies["username"];
             Thread t = Thread.AssembleThread(id);
             return View("PostAnswer", t);
         }
+
+
 
         public IActionResult UpVoteAnswer(int answerID)
         {
@@ -111,6 +132,8 @@ namespace Dapper_Project.Controllers
             return View("ReadAnswers" , t);
         }
 
+
+
         public IActionResult DownVoteAnswer(int answerID)
         {
             ViewBag.username = HttpContext.Request.Cookies["username"];
@@ -119,6 +142,8 @@ namespace Dapper_Project.Controllers
             Thread t = Thread.AssembleThread(a.QuestionID);
             return View("ReadAnswers", t);
         }
+
+
 
         public IActionResult EditAnswer(int ID)
         {
@@ -129,6 +154,8 @@ namespace Dapper_Project.Controllers
             return View(t);
         }
 
+
+
         public IActionResult UpdateAnswer(string detail, int ID)
         {
             ViewBag.username = HttpContext.Request.Cookies["username"];
@@ -138,6 +165,8 @@ namespace Dapper_Project.Controllers
             Thread t = Thread.AssembleThread(a.QuestionID);
             return View("ReadAnswers", t );
         }
+
+
 
         public IActionResult SearchQuestions(string Category, string Search)
         {
@@ -157,16 +186,14 @@ namespace Dapper_Project.Controllers
             }
             return View("ReadQuestions", q);
         }
-        /*
-         //Prints comments in comments thread. 
-            Same user should be able to add multiple answers to the same question
-         
-        public IActionResult ReadAnswers(long id)
-        {
-            List<Answers> answers = Answers.Read();
-            return View(answers);
 
+        public IActionResult CompletionStatus(int ID, int status)
+        {
+
+            Questions.MarkQuestionStatus(ID, status);
+            List<Questions> QS = Questions.Read();
+            return RedirectToAction("ReadQuestions", "QA");
         }
-        */
+
     }
 }

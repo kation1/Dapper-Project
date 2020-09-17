@@ -9,35 +9,43 @@
     @foreach (Questions questions in Model)
     {
 
-    <tr>
-        <td>
-            <a href="/QA/ReadAnswers?id=@questions.ID"> @questions.Title</a>  <br />
-        </td>
-        <td>
-            @questions.Detail <br />
-        </td>
-        <td>
-            @questions.Category <br />
-        </td>
-        <td>
-            @questions.Tags <br />
-        </td>
-        @if (ViewBag.username == questions.Username)
-        {
+        <tr>
             <td>
-                <a href="/QA/EditQuestion?=@questions.ID">Edit</a>
+                <a href="/QA/ReadAnswers?id=@questions.ID"> @questions.Title</a>  <br />
             </td>
             <td>
-                <a href="/QA/RemoveQuestion?=@questions.ID">Delete</a>
+                @questions.Detail <br />
             </td>
-        }
-    </tr>
+            <td>
+                @questions.Category <br />
+            </td>
+            <td>
+                @questions.Tags <br />
+            </td>
+            @if (ViewBag.username == questions.Username)
+            {
+                <td>
+                    <a href="/QA/EditQuestion?=@questions.ID">Edit</a>
+                </td>
+                <td>
+                    <a href="/QA/RemoveQuestion?=@questions.ID">Delete</a>
+                </td>
+                <td>
+                    @if (questions.Status == 1)
+                    {
+                        <a href="/QA/CompletionStatus?=@questions.ID&status=0">Mark Closed</a>}
+                    @if (questions.Status == 0)
+                    {
+                        <a href="/QA/CompletionStatus?=@questions.ID&status=1">Mark Open</a>}
+                </td>
+            }
+        </tr>
     }
 </table>
 
 <br />
 <form method="get" action="/QA/SearchQuestions">
-    <input type="text" name="Search" id="Search"/>
+    <input type="text" name="Search" id="Search" />
     <select name="Category" id="Category">
         <option value="Category">Category</option>
         <option value="Detail">Detail</option>

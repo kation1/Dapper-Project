@@ -106,5 +106,17 @@ namespace Dapper_Project.Models
 
             return Q;
         }
+
+        public static void MarkQuestionStatus(int ID, int status)
+        {
+            Questions q = Questions.Read(ID);
+            q.Status = status;
+            IDbConnection db = new SqlConnection(server);
+            db.Update(q);
+
+        }
+
+        //Sort by marked open status or marked closed status
+        //Don't allow answers to be posted on questions that are closed.
     }
 }

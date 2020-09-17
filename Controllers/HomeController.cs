@@ -37,6 +37,8 @@ namespace Dapper_Project.Controllers
             return View("Login");
         }
 
+
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
