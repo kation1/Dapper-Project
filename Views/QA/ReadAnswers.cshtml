@@ -18,14 +18,13 @@ Answers:
 <br />
 <a href="/QA/WriteAnswer?id=@Model.Q.ID"> Add an Answer:  </a>
 <br />
+
 <table>
 
     @foreach (Answers a in Model.A)
     {
     <tr>
-        <td>
-            Upvotes: @a.UpVotes
-        </td>
+
 
         <td>
             @a.Detail
@@ -39,6 +38,11 @@ Answers:
         <td>
             Posted at: @a.Posted
         </td>
+
+        <td>
+             Upvotes: <a href="/QA/UpVoteAnswer?answerID=@a.ID"> <input type="button" value="@a.UpVotes"/> </a>
+        </td>
+
         @if (ViewBag.username == a.Username || ViewBag.username == Model.Q.Username)
         {
             <td>

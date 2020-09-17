@@ -102,6 +102,15 @@ namespace Dapper_Project.Controllers
             return View("PostAnswer", t);
         }
 
+        public IActionResult UpVoteAnswer(int answerID)
+        {
+            ViewBag.username = HttpContext.Request.Cookies["username"];
+            Answers.UpVoteAnswer(answerID);
+            Answers a = Answers.Read(answerID);
+            Thread t = Thread.AssembleThread(a.QuestionID);
+            return View("ReadAnswers" , t);
+        }
+
 
         /*
          //Prints comments in comments thread. 

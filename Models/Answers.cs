@@ -6,6 +6,7 @@ using Dapper.Contrib.Extensions;
 using System.Data.SqlClient;
 using System.Data;
 using Dapper;
+using Microsoft.EntityFrameworkCore.Internal;
 
 namespace Dapper_Project.Models
 {
@@ -20,7 +21,7 @@ namespace Dapper_Project.Models
         //^Foreign Key from Questions
         public string Posted { get; set; }
         public int UpVotes { get; set; }
-        
+
 
         const string server = "Server=9QP7Q13\\SQLEXPRESS;Database=Slack;user id=sa;password=abc123";
 
@@ -35,7 +36,7 @@ namespace Dapper_Project.Models
         {
             IDbConnection db = new SqlConnection(server);
             List<Answers> A = db.Query<Answers>($"select * from [Answers] where Questionid = {Qid} ORDER BY Upvotes desc").AsList<Answers>();
-            
+
             return A;
         }
 
@@ -76,6 +77,13 @@ namespace Dapper_Project.Models
         }
 
 
+        public static void UpVoteAnswer(int answerID)
+        {
+            Answers a = Answers.Read(answerID);
+            a.UpVotes = a.UpVotes + 1;
+            IDbConnection db = new SqlConnection(server);
+            db.Update(a);
+        }
 
     }
 }
