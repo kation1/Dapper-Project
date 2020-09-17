@@ -84,6 +84,12 @@ namespace Dapper_Project.Models
             IDbConnection db = new SqlConnection(server);
             db.Update(a);
         }
-
+        public static void DownVoteAnswer(int answerID)
+        {
+            Answers a = Answers.Read(answerID);
+            a.UpVotes = a.UpVotes - 1;
+            IDbConnection db = new SqlConnection(server);
+            db.Update(a);
+        }
     }
 }

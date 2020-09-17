@@ -111,7 +111,14 @@ namespace Dapper_Project.Controllers
             return View("ReadAnswers" , t);
         }
 
-
+        public IActionResult DownVoteAnswer(int answerID)
+        {
+            ViewBag.username = HttpContext.Request.Cookies["username"];
+            Answers.UpVoteAnswer(answerID);
+            Answers a = Answers.Read(answerID);
+            Thread t = Thread.AssembleThread(a.QuestionID);
+            return View("ReadAnswers", t);
+        }
         /*
          //Prints comments in comments thread. 
             Same user should be able to add multiple answers to the same question

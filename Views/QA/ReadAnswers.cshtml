@@ -40,7 +40,10 @@ Answers:
         </td>
 
         <td>
-             Upvotes: <a href="/QA/UpVoteAnswer?answerID=@a.ID"> <input type="button" value="@a.UpVotes"/> </a>
+            Upvotes: <a href="/QA/UpVoteAnswer?answerID=@a.ID"> <input type="button" value="@a.UpVotes" /> </a>
+        </td>
+        <td>
+            Downvotes: <a href="/QA/DownVoteAnswer?answerID=@a.ID"> <input type="button" value="@a.UpVotes" /> </a>
         </td>
 
         @if (ViewBag.username == a.Username || ViewBag.username == Model.Q.Username)
@@ -49,7 +52,7 @@ Answers:
                 <a href="/QA/RemoveAnswer?thisID=@a.ID">Delete</a>
             </td>
         }
-        </tr>
+    </tr>
 
     }
 
