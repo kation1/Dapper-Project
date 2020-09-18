@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\devbuild4\\Labs\\QL StackOverflow\\Dapper Project\\Dapper Project.csproj": {}
+    "C:\\devbuild4\\Dapper-Project\\Dapper Project.csproj": {}
   },
   "projects": {
-    "C:\\devbuild4\\Labs\\QL StackOverflow\\Dapper Project\\Dapper Project.csproj": {
+    "C:\\devbuild4\\Dapper-Project\\Dapper Project.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\devbuild4\\Labs\\QL StackOverflow\\Dapper Project\\Dapper Project.csproj",
+        "projectUniqueName": "C:\\devbuild4\\Dapper-Project\\Dapper Project.csproj",
         "projectName": "Dapper Project",
-        "projectPath": "C:\\devbuild4\\Labs\\QL StackOverflow\\Dapper Project\\Dapper Project.csproj",
-        "packagesPath": "C:\\Users\\TSATKOWIAK\\.nuget\\packages\\",
-        "outputPath": "C:\\devbuild4\\Labs\\QL StackOverflow\\Dapper Project\\obj\\",
+        "projectPath": "C:\\devbuild4\\Dapper-Project\\Dapper Project.csproj",
+        "packagesPath": "C:\\Users\\ehill2\\.nuget\\packages\\",
+        "outputPath": "C:\\devbuild4\\Dapper-Project\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\TSATKOWIAK\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\ehill2\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -93,7 +93,7 @@
               "version": "[4.8.2, )"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.402\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.302\\RuntimeIdentifierGraph.json"
         }
       },
       "runtimes": {

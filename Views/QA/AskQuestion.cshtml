@@ -5,22 +5,31 @@
 
 <h2>Ask Question</h2>
 
+<hr style="border:2px solid yellow;" />
+<br />
+
 <form method="post" action="/QA/AddQuestion">
-    Title: <input type="text" name="Title" /> <br />
+    <label>Title:</label> <input type="text" name="Title" />
+    <br />
+    <br />
+    <label>Details:</label><textarea type="text" name="Detail"> </textarea> 
+    <br />
+    <br />
+    <label>Category:</label> <select name="Category" id="Category">
+        <option value="Help">Coding Help</option>
+        <option value="Errors">Errors</option>
+        <option value="Discussion">Discussion</option>
+        <option value="Fun">Fun stuff</option>
+    </select>
+    <br />
+    <br />
 
-    Details: <textarea name="Detail"> </textarea> <br />
+    <label>Tags:</label> <input type="text" name="Tags" />
 
-    Category: <select name="Category" id="Category">
-                <option value="Help">Coding Help</option>
-                <option value="Errors">Errors</option>
-                <option value="Discussion">Discussion</option>
-                <option value="Fun">Fun stuff</option>
-              </select><br />
-
-    Tags: <input type="text" name="Tags" />
-
-          <input type="hidden" name="Username" value="@ViewBag.username" />
-          <input type="submit"  value="Submit" />
+    <input type="hidden" name="Username" value="@ViewBag.username" />
+    <br />
+    <br />
+    <input type="submit" value="Submit" />
 
 
 </form>
