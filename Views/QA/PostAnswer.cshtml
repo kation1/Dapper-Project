@@ -3,25 +3,32 @@
     ViewData["Title"] = "PostAnswer";
 }
 
-<h2>Post Answer below:</h2>
+<h1>Post Answer below:</h1>
 
 <b style="color:green">@ViewBag.Message</b>
+<hr style="border:2px solid yellow;" />
 
 <form method="post" action="/QA/PostAnswer">
 
-    Question Title: @Model.Q.Title <br />
-    Question body: @Model.Q.Detail <br />
-
-
-    
-    Details: <textarea name="detail"> </textarea> <br />
-    Tags: <input type="text" name="Tags"  />
+    <label>Question Title:</label> @Model.Q.Title
+    <br />
+    <br />
+    <br />
+    <label>Question Body:</label> @Model.Q.Detail
+    <br />
+    <br />
+    <br />
+    <label>Details:</label> <textarea name="detail"> </textarea>
+    <br />
+    <label>Tags:</label> <input type="text" name="Tags" />
 
     <input type="hidden" name="questionID" value="@Model.Q.ID" />
     <input type="hidden" name="username" value="@ViewBag.username" />
+    <br />
+    <br />
     <input type="submit" value="Submit" />
 
 
-    
+
 </form>
 

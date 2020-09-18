@@ -3,14 +3,19 @@
     ViewData["Title"] = "EditAnswer";
 }
 
-<h2>Edit Answer</h2>
+<h1>Edit Answer</h1>
 <b style="color:green">@ViewBag.Message</b>
+<hr style="border:2px solid yellow;" />
 
 <form method="post" action="/QA/UpdateAnswer">
 
-    Question Title: @Model.Q.Title <br />
-    Question body: @Model.Q.Detail <br />
-
+    <label>Question Title:</label> @Model.Q.Title
+    <br />
+    <br />
+    <br />
+    <label>Question Body:</label> @Model.Q.Detail 
+    <br />
+    <br />
     <br />
     <table>
         @foreach (Answers a in Model.A)
@@ -20,7 +25,7 @@
                 <tr>
                     <td>
 
-                        Details: <textarea name="detail" id="detail">@a.Detail</textarea>
+                        <label>Details:</label> <textarea name="detail" id="detail">@a.Detail</textarea>
 
                     </td>
                 </tr>
@@ -32,6 +37,7 @@
 
     <input type="hidden" name="ID" id="ID" value="@ViewBag.ID" />
     <input type="hidden" name="username" id="username" value="@ViewBag.username" />
+    <br />
     <input type="submit" value="Submit" />
 
 </form>

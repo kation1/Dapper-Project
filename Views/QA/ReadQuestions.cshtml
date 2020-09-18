@@ -3,7 +3,12 @@
     ViewData["Title"] = "ReadQuestions";
 }
 
-<h2>Read Questions</h2>
+<h1>Read Questions</h1>
+
+
+<b style="color:green">@ViewBag.SaveMessage</b>
+<b style="color:red">@ViewBag.DeleteMessage</b>
+<hr style="border:2px solid yellow;" />
 
 <table>
     <tr>
@@ -74,6 +79,8 @@
         <option value="Detail">Detail</option>
         <option value="Title">Title</option>
     </select>
+    <br />
+    <br />
     <input type="submit" value="Search" />
 </form>
 

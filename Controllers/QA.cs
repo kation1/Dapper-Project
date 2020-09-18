@@ -17,16 +17,18 @@ namespace Dapper_Project.Controllers
         }
 
 
-
+       
         public IActionResult ReadQuestions()
         {
             ViewBag.username = HttpContext.Request.Cookies["username"];
+            //ViewBag.SaveMessage = "Your entry has been saved.";
+            //ViewBag.DeleteMessage = "Your entry has been Deleted.";
             List<Questions> QS = Questions.Read();
             return View(QS);
         }
 
 
-
+        [HttpGet]
         public IActionResult AskQuestion()
         {
             ViewBag.username = HttpContext.Request.Cookies["username"];
@@ -34,39 +36,43 @@ namespace Dapper_Project.Controllers
         }
 
 
-
+        [HttpPost]
         public IActionResult AddQuestion(string username, string title, string detail, string category, string tags)
         {
             ViewBag.username = HttpContext.Request.Cookies["username"];
+            ViewBag.SaveMessage = "Your entry has been saved.";
             Questions.Create(username, title, detail, category, tags);
             return RedirectToAction("ReadQuestions", "QA");
         }
 
 
-
+        [HttpGet]
         public IActionResult EditQuestion(int id)
         {
             ViewBag.username = HttpContext.Request.Cookies["username"];
+            ViewBag.SaveMessage = "Your entry has been saved.";
             Questions questions = Questions.Read(id);
 
             return View(questions);
         }
 
 
-
+        [HttpPost]
         public IActionResult UpdateQuestion(int id, string username, string title, string detail, string category, string tags)
         {
             ViewBag.username = HttpContext.Request.Cookies["username"];
-            ViewBag.Message = "Your entry has been saved.";
+            ViewBag.SaveMessage = "Your entry has been saved.";
+            ViewBag.DeleteMessage = "Your entry has been Deleted.";
             Questions.Update(id, username, title, detail, category, tags);
             return RedirectToAction("ReadQuestions", "QA");
         }
 
 
-
+        [HttpGet]
         public IActionResult RemoveQuestion(int id)
         {
             ViewBag.username = HttpContext.Request.Cookies["username"];
+            ViewBag.DeleteMessage = "Your entry has been deleted.";
             Thread t = Thread.AssembleThread(id);
             Thread.DeleteThread(t);
 
@@ -74,17 +80,18 @@ namespace Dapper_Project.Controllers
         }
 
 
-
+        [HttpGet]
         public IActionResult RemoveAnswer(int thisID)
         {
             ViewBag.username = HttpContext.Request.Cookies["username"];
+
             Answers a = Answers.Read(thisID);
-            
+
             int qid = a.QuestionID;
             Answers.Delete(thisID);
-            
 
-            return RedirectToAction("ReadAnswers", "QA", new { id = qid});
+
+            return RedirectToAction("ReadAnswers", "QA", new { id = qid });
 
         }
 
@@ -93,10 +100,12 @@ namespace Dapper_Project.Controllers
         public IActionResult ReadAnswers(int id)
         {
             ViewBag.username = HttpContext.Request.Cookies["username"];
+            ViewBag.SaveMessage = "Your answer has been saved";
+            ViewBag.DeleteMessage = "Your entry has been Deleted.";
             Thread t = new Thread();
             t.A = Answers.ReadAll(id);
             t.Q = Questions.Read(id);
-            
+
             return View(t);
         }
 
@@ -105,7 +114,7 @@ namespace Dapper_Project.Controllers
         public IActionResult PostAnswer(string username, string detail, int questionID)
         {
             ViewBag.username = HttpContext.Request.Cookies["username"];
-            ViewBag.Message = "Your Answer has been posted.";
+            ViewBag.SaveMessage = "Your Answer has been posted.";
             Answers.Create(username, detail, questionID);
             Thread t = Thread.AssembleThread(questionID);
             return View("ReadAnswers", t);
@@ -129,7 +138,7 @@ namespace Dapper_Project.Controllers
             Answers.UpVoteAnswer(answerID);
             Answers a = Answers.Read(answerID);
             Thread t = Thread.AssembleThread(a.QuestionID);
-            return View("ReadAnswers" , t);
+            return View("ReadAnswers", t);
         }
 
 
@@ -144,7 +153,7 @@ namespace Dapper_Project.Controllers
         }
 
 
-
+        [HttpGet]
         public IActionResult EditAnswer(int ID)
         {
             ViewBag.username = HttpContext.Request.Cookies["username"];
@@ -160,6 +169,7 @@ namespace Dapper_Project.Controllers
         {
             ViewBag.username = HttpContext.Request.Cookies["username"];
             ViewBag.Message = "Your entry has been saved.";
+
             Answers a = Answers.Read(ID);
             Answers.Update(a, detail);
             Thread t = Thread.AssembleThread(a.QuestionID);
