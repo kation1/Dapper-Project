@@ -8,7 +8,7 @@
 
 <!--
     If/else the ViewBag messages
-    
+
 
 -->
 
@@ -30,7 +30,7 @@
 </p>
 <br />
 <label>Answers:</label>
-
+<br/><br />
 <table>
 
     @foreach (Answers a in Model.A)
@@ -52,19 +52,24 @@
                 Posted at: @a.Posted
                 <br />
             </td>
-
-            <td>
-                <a href="/QA/UpVoteAnswer?answerID=@a.ID"> <input type="button" value="+" /> </a>
-                <br />
-            </td>
+            @if (ViewBag.vote == "0" || ViewBag.vote == "-1" || ViewBag.vote == null)
+            {
+                <td>
+                    <a href="/QA/UpVoteAnswer?answerID=@a.ID"> <input type="button" value="+" /> </a>
+                    <br />
+                </td>
+            }
             <td>
                 @a.UpVotes
                 <br />
             </td>
-            <td>
-                <a href="/QA/DownVoteAnswer?answerID=@a.ID"> <input type="button" value="-" /> </a>
-                <br />
-            </td>
+            @if (ViewBag.vote == "1" || ViewBag.vote == "0" || ViewBag.vote == null)
+            {
+                <td>
+                    <a href="/QA/DownVoteAnswer?answerID=@a.ID"> <input type="button" value="-" /> </a>
+                    <br />
+                </td>
+            }
 
             @if (ViewBag.username == a.Username || ViewBag.username == Model.Q.Username || ViewBag.username == "admin")
             {

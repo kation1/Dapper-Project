@@ -84,7 +84,6 @@ namespace Dapper_Project.Controllers
         public IActionResult RemoveAnswer(int thisID)
         {
             ViewBag.username = HttpContext.Request.Cookies["username"];
-
             Answers a = Answers.Read(thisID);
 
             int qid = a.QuestionID;
@@ -99,7 +98,14 @@ namespace Dapper_Project.Controllers
 
         public IActionResult ReadAnswers(int id)
         {
-            ViewBag.username = HttpContext.Request.Cookies["username"];
+            string username = HttpContext.Request.Cookies["username"];
+            ViewBag.username = username;
+            string vote = HttpContext.Request.Cookies[$"{id}&{username}"];
+            if (vote != null)
+            {
+                string[] voteData = vote.Split('&');
+                ViewBag.vote = voteData[0];
+            }
             ViewBag.SaveMessage = "Your answer has been saved";
             ViewBag.DeleteMessage = "Your entry has been Deleted.";
             Thread t = new Thread();
@@ -134,18 +140,61 @@ namespace Dapper_Project.Controllers
 
         public IActionResult UpVoteAnswer(int answerID)
         {
-            ViewBag.username = HttpContext.Request.Cookies["username"];
+            string username = HttpContext.Request.Cookies["username"];
+            ViewBag.username = username;
+            string vote = HttpContext.Request.Cookies[$"{answerID}&{username}"];
+            if (vote == null)
+            {
+                HttpContext.Response.Cookies.Append($"{answerID}&{username}", "1");
+            }
+            else
+            {
+                string[] voteData = vote.Split('&');
+                if (voteData[0] == "0")
+                {
+
+                    voteData[0] = "1";
+                }
+                else
+                {
+                    voteData[0] = "0";
+                }
+                HttpContext.Response.Cookies.Append($"{answerID}&{username}", $"{voteData[0]}");
+                ViewBag.vote = voteData[0];
+            }
             Answers.UpVoteAnswer(answerID);
             Answers a = Answers.Read(answerID);
             Thread t = Thread.AssembleThread(a.QuestionID);
             return View("ReadAnswers", t);
         }
 
+         
 
 
         public IActionResult DownVoteAnswer(int answerID)
         {
-            ViewBag.username = HttpContext.Request.Cookies["username"];
+            string username = HttpContext.Request.Cookies["username"];
+            ViewBag.username = username;
+            string vote = HttpContext.Request.Cookies[$"{answerID}&{username}"];
+            if (vote == null)
+            {
+                HttpContext.Response.Cookies.Append($"{answerID}&{username}", "-1");
+            }
+            else
+            {
+                string[] voteData = vote.Split('&');
+                if (voteData[0] == "0")
+                {
+
+                    voteData[0] = "-1";
+                }
+                else
+                {
+                    voteData[0] = "0";
+                }
+                HttpContext.Response.Cookies.Append($"{answerID}&{username}", $"{voteData[0]}");
+                ViewBag.vote = voteData[0];
+            }
             Answers.DownVoteAnswer(answerID);
             Answers a = Answers.Read(answerID);
             Thread t = Thread.AssembleThread(a.QuestionID);
@@ -167,7 +216,9 @@ namespace Dapper_Project.Controllers
 
         public IActionResult UpdateAnswer(string detail, int ID)
         {
-            ViewBag.username = HttpContext.Request.Cookies["username"];
+            string username = HttpContext.Request.Cookies["username"];
+            ViewBag.username = username;
+            string vote = HttpContext.Request.Cookies[$"{ID}&{username}"];
             ViewBag.Message = "Your entry has been saved.";
 
             Answers a = Answers.Read(ID);

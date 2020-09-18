@@ -23,7 +23,8 @@ namespace Dapper_Project.Models
         public int UpVotes { get; set; }
 
 
-        const string server = "Server=9QP7Q13\\SQLEXPRESS;Database=Slack;user id=sa;password=abc123";
+        //const string server = "Server=9QP7Q13\\SQLEXPRESS;Database=Slack;user id=sa;password=abc123";  //Tyler Database
+        const string server = "Server=7RP7Q13\\SQLEXPRESS;Database=Slack;user id=csharp;password=abc123"; //David Database
 
         public static Answers Read(int _id)
         {
