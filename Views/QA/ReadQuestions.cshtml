@@ -10,6 +10,20 @@
 <b style="color:red">@ViewBag.DeleteMessage</b>
 <hr style="border:2px solid yellow;" />
 
+<form method="get" action="/QA/SearchQuestions">
+    <input type="text" name="Search" id="Search" />
+    <select name="Category" id="Category">
+        <option value="Category">Category</option>
+        <option value="Detail">Detail</option>
+        <option value="Title">Title</option>
+        <option value="Tags">Tags</option>
+    </select>
+
+    <input type="submit" value="Search" />
+</form>
+
+<br/>
+
 <table>
     <tr>
         <th>
@@ -72,15 +86,6 @@
 </table>
 
 <br />
-<form method="get" action="/QA/SearchQuestions">
-    <input type="text" name="Search" id="Search" />
-    <select name="Category" id="Category">
-        <option value="Category">Category</option>
-        <option value="Detail">Detail</option>
-        <option value="Title">Title</option>
-    </select>
-    <br />
-    <br />
-    <input type="submit" value="Search" />
-</form>
+<br />
+<br />
 

@@ -190,9 +190,13 @@ namespace Dapper_Project.Controllers
             {
                 q = Questions.SearchDetail(Search);
             }
-            else
+            else if (Category == "Title")
             {
                 q = Questions.SearchTitle(Search);
+            }
+            else
+            {
+                q = Questions.SearchTags(Search);
             }
             return View("ReadQuestions", q);
         }

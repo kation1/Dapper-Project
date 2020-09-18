@@ -23,7 +23,7 @@ namespace Dapper_Project.Models
         public string Tags { get; set; }
         public int Status { get; set; }
 
-        const string server = "Server=4797Q13;Database=Slack;user id=sa;password=Inari2007";
+        const string server = "Server=9QP7Q13\\SQLEXPRESS;Database=Slack;user id=sa;password=abc123";
 
         public static Questions Read(int _id)
         {
@@ -103,6 +103,14 @@ namespace Dapper_Project.Models
         {
             IDbConnection db = new SqlConnection(server);
             List<Questions> Q = db.Query<Questions>($"select * from Questions where Category LIKE '%{search}%'").AsList();
+
+            return Q;
+        }
+
+        public static List<Questions> SearchTags(string search)
+        {
+            IDbConnection db = new SqlConnection(server);
+            List<Questions> Q = db.Query<Questions>($"select * from Questions where Tags LIKE '%{search}%'").AsList();
 
             return Q;
         }
