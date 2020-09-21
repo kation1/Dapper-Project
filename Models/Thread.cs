@@ -10,14 +10,17 @@ namespace Dapper_Project.Models
         public Questions Q { get; set; }
 
         public List<Answers> A { get; set; }
+        public List<int> votes { get; set; }
 
         public static Thread AssembleThread(int id)
         {
             Thread t = new Thread();
             t.A = Answers.ReadAll(id);
             t.Q = Questions.Read(id);
+            t.votes = Answers.GetIDs(t.A);
             return t;
         }
+
 
         public static void DeleteThread(Thread it)
         {

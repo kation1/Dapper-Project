@@ -30,7 +30,8 @@
 </p>
 <br />
 <label>Answers:</label>
-<br/><br />
+<br />
+<br />
 <table>
 
     @foreach (Answers a in Model.A)
@@ -52,25 +53,35 @@
                 Posted at: @a.Posted
                 <br />
             </td>
-            @if (ViewBag.vote == "0" || ViewBag.vote == "-1" || ViewBag.vote == null)
+            @if (a.Vote == "0" || a.Vote == "-1" || a.Vote == null)
             {
                 <td>
                     <a href="/QA/UpVoteAnswer?answerID=@a.ID"> <input type="button" value="+" /> </a>
                     <br />
                 </td>
             }
+            else
+            {
+                <td>X</td>
+            }
             <td>
                 @a.UpVotes
                 <br />
             </td>
-            @if (ViewBag.vote == "1" || ViewBag.vote == "0" || ViewBag.vote == null)
+            <td>
+                @a.Vote
+            </td>
+            @if (a.Vote == "1" || a.Vote == "0" || a.Vote == null)
             {
                 <td>
                     <a href="/QA/DownVoteAnswer?answerID=@a.ID"> <input type="button" value="-" /> </a>
                     <br />
                 </td>
             }
-
+            else
+            {
+                <td>X</td>
+            }
             @if (ViewBag.username == a.Username || ViewBag.username == Model.Q.Username || ViewBag.username == "admin")
             {
                 <td>

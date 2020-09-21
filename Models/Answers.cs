@@ -21,6 +21,7 @@ namespace Dapper_Project.Models
         //^Foreign Key from Questions
         public string Posted { get; set; }
         public int UpVotes { get; set; }
+        public string Vote { get; set; }
 
 
         //const string server = "Server=9QP7Q13\\SQLEXPRESS;Database=Slack;user id=sa;password=abc123";  //Tyler Database
@@ -37,9 +38,18 @@ namespace Dapper_Project.Models
         {
             IDbConnection db = new SqlConnection(server);
             List<Answers> A = db.Query<Answers>($"select * from [Answers] where Questionid = {Qid} ORDER BY Upvotes desc").AsList<Answers>();
-
             return A;
         }
+
+        public static List<int> GetIDs(List<Answers> As)
+        {
+            List<int> IDs = new List<int>();
+            foreach(Answers a in As)
+            {
+                IDs.Add(a.ID);
+            }
+            return IDs;
+        } 
 
         public static void Create(string username, string detail, int questionID)
         {
@@ -53,7 +63,8 @@ namespace Dapper_Project.Models
                 UpVotes = 0
             };
 
-            db.Insert(answers);
+            db.Query($"Insert Into Answers (Username, Detail, QuestionID, Posted, UpVotes) Values ('{username}', '{detail}', '{questionID}', '{answers.Posted}', '0')");
+            //db.Insert(answers);
         }
 
         public static void Update(Answers answers, string detail)
@@ -84,7 +95,8 @@ namespace Dapper_Project.Models
             Answers a = Answers.Read(answerID);
             a.UpVotes = a.UpVotes + 1;
             IDbConnection db = new SqlConnection(server);
-            db.Update(a);
+            //db.Update(a);
+            db.Query($"Update Answers SET Upvotes='{a.UpVotes}' where ID='{answerID}'");
         }
 
         public static void DownVoteAnswer(int answerID)
@@ -92,7 +104,8 @@ namespace Dapper_Project.Models
             Answers a = Answers.Read(answerID);
             a.UpVotes = a.UpVotes - 1;
             IDbConnection db = new SqlConnection(server);
-            db.Update(a);
+            //db.Update(a);
+            db.Query($"Update Answers SET Upvotes='{a.UpVotes}' where ID='{answerID}'");
         }
     }
 }

@@ -98,20 +98,25 @@ namespace Dapper_Project.Controllers
 
         public IActionResult ReadAnswers(int id)
         {
+            Thread t = new Thread();
+            t.A = Answers.ReadAll(id);
+            t.Q = Questions.Read(id);
             string username = HttpContext.Request.Cookies["username"];
             ViewBag.username = username;
+            /*
             string vote = HttpContext.Request.Cookies[$"{id}&{username}"];
             if (vote != null)
             {
                 string[] voteData = vote.Split('&');
                 ViewBag.vote = voteData[0];
             }
+            */
             ViewBag.SaveMessage = "Your answer has been saved";
             ViewBag.DeleteMessage = "Your entry has been Deleted.";
-            Thread t = new Thread();
-            t.A = Answers.ReadAll(id);
-            t.Q = Questions.Read(id);
-
+            foreach (Answers ans in t.A)
+            {
+                ans.Vote = HttpContext.Request.Cookies[$"{ans.ID}&{username}"];
+            }
             return View(t);
         }
 
@@ -165,11 +170,13 @@ namespace Dapper_Project.Controllers
             Answers.UpVoteAnswer(answerID);
             Answers a = Answers.Read(answerID);
             Thread t = Thread.AssembleThread(a.QuestionID);
+            foreach (Answers ans in t.A)
+            {
+                ans.Vote = HttpContext.Request.Cookies[$"{ans.ID}&{username}"];
+            }
             return View("ReadAnswers", t);
         }
-
-         
-
+ 
 
         public IActionResult DownVoteAnswer(int answerID)
         {
@@ -198,6 +205,10 @@ namespace Dapper_Project.Controllers
             Answers.DownVoteAnswer(answerID);
             Answers a = Answers.Read(answerID);
             Thread t = Thread.AssembleThread(a.QuestionID);
+            foreach(Answers ans in t.A)
+            {
+                ans.Vote = HttpContext.Request.Cookies[$"{ans.ID}&{username}"];
+            }
             return View("ReadAnswers", t);
         }
 
