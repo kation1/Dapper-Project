@@ -1,8 +1,11 @@
-﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification\ 
+﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification\
 for details on configuring this project to bundle and minify static web assets. */
 body {
     padding-top: 50px;
     padding-bottom: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    background-color: #F2F2F2;
 }
 
 /* Wrapping element */
@@ -28,6 +31,99 @@ body {
     margin: 15px;
 }
 
+h1 {
+    color: #00008B;
+}
+
+h2 {
+    color: #0000ff;
+}
+
+h3 {
+    color: #0040ff;
+}
+
+h4 {
+    color: #0080ff;
+}
+
+label {
+    width: 80px;
+    float: left;
+    text-align: left;
+    color: #0040ff;
+}
+
+input[type=text] {
+    width: 200px;
+    float: inherit;
+    background-color: lightgray;
+}
+
+    input[type=text]:focus {
+        background-color: white;
+    }
+
+textarea {
+    width: 200px;
+    background-color: lightgray;
+}
+
+    textarea:focus {
+        width: 200px;
+        background-color: white;
+    }
+
+table, th, tr, td {
+    border: 2px solid black;
+    width: auto;
+    padding: 5px;
+    font-size: 15px;
+}
+
+button1 {
+    color: green;
+    background-color: yellow;
+    border: outset;
+    padding: 10px 15px;
+    text-align: center;
+    display: inline-block;
+}
+
+button2 {
+    color: #ffffff;
+    background-color: #ff0000;
+    border: inset;
+    padding: 10px 15px;
+    text-align: center;
+    display: inline-block;
+}
+
+button3 {
+    color: #ffffff;
+    background-color: blue;
+    border: inset;
+    padding: 10px 15px;
+    text-align: center;
+    display: inline-block;
+}
+input[type=submit] {
+    color: #ffffff;
+    background-color: #00008B;
+    border: ridge;
+    padding: 10px 15px;
+    text-align: center;
+    display: inline-block;
+}
+
+input[type=button] {
+    color: #ffffff;
+    background-color: #00008B;
+    border: ridge;
+    padding: 10px 15px;
+    text-align: center;
+    display: inline-block;
+}
 /* Hide/rearrange for smaller screens */
 @media screen and (max-width: 767px) {
     /* Hide captions */

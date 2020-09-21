@@ -4,54 +4,101 @@
     ViewData["Title"] = "ReadAnswers";
 }
 
-<h2>Read Answers</h2>
+<h1>Read Answers</h1>
 
-<h3>@Model.Q.Title</h3>
-<h4>Posted by: @Model.Q.Username</h4>
-<h6>Category: @Model.Q.Category</h6>
+<!--
+    If/else the ViewBag messages
+
+
+-->
+
+<b style="color:green">@ViewBag.SaveMessage</b>
+
+
+<b style="color:red">@ViewBag.DeleteMessage</b>
+
+
+<hr style="border:2px solid yellow;" />
+
+<h2>@Model.Q.Title</h2>
+<h3>Posted by: @Model.Q.Username</h3>
+<br />
+<h4>Category: @Model.Q.Category</h4>
 
 <p>
     @Model.Q.Detail
 </p>
-
-Answers:
 <br />
-<a href="/QA/WriteAnswer?id=@Model.Q.ID"> Add an Answer:  </a>
+<label>Answers:</label>
 <br />
-
+<br />
 <table>
 
     @foreach (Answers a in Model.A)
     {
-    <tr>
+        <tr>
 
 
-        <td>
-            @a.Detail
-
-        </td>
-
-        <td>
-            Posted by: @a.Username
-        </td>
-
-        <td>
-            Posted at: @a.Posted
-        </td>
-
-        <td>
-             Upvotes: <a href="/QA/UpVoteAnswer?answerID=@a.ID"> <input type="button" value="@a.UpVotes"/> </a>
-        </td>
-
-        @if (ViewBag.username == a.Username || ViewBag.username == Model.Q.Username)
-        {
             <td>
-                <a href="/QA/RemoveAnswer?thisID=@a.ID">Delete</a>
+                @a.Detail
+                <br />
             </td>
-        }
+
+            <td>
+                Posted by: @a.Username
+                <br />
+            </td>
+
+            <td>
+                Posted at: @a.Posted
+                <br />
+            </td>
+            @if (a.Vote == "0" || a.Vote == "-1" || a.Vote == null)
+            {
+                <td>
+                    <a href="/QA/UpVoteAnswer?answerID=@a.ID"> <input type="button" value="+" /> </a>
+                    <br />
+                </td>
+            }
+            else
+            {
+                <td>X</td>
+            }
+            <td>
+                @a.UpVotes
+                <br />
+            </td>
+            <td>
+                @a.Vote
+            </td>
+            @if (a.Vote == "1" || a.Vote == "0" || a.Vote == null)
+            {
+                <td>
+                    <a href="/QA/DownVoteAnswer?answerID=@a.ID"> <input type="button" value="-" /> </a>
+                    <br />
+                </td>
+            }
+            else
+            {
+                <td>X</td>
+            }
+            @if (ViewBag.username == a.Username || ViewBag.username == Model.Q.Username || ViewBag.username == "admin")
+            {
+                <td>
+                    <a href="/QA/RemoveAnswer?thisID=@a.ID"><button2>Delete</button2></a>
+                </td>
+
+                <td>
+                    <a href="/QA/EditAnswer?ID=@a.ID"><button1>Edit</button1></a>
+                    <!--Be able to edit your answer here-->
+                </td>
+            }
         </tr>
 
     }
 
 </table>
+<br />
+<br />
+<a href="/QA/WriteAnswer?id=@Model.Q.ID"><button1>Add an Answer</button1></a>
 

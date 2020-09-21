@@ -23,9 +23,10 @@ namespace Dapper_Project.Models
         public string Tags { get; set; }
         public int Status { get; set; }
 
-        const string server = "Server=9QP7Q13\\SQLEXPRESS;Database=Slack;user id=sa;password=abc123";
+        //const string server = "Server=9QP7Q13\\SQLEXPRESS;Database=Slack;user id=sa;password=abc123"; // Tyler Database
+        const string server = "Server=7RP7Q13\\SQLEXPRESS;Database=Slack;user id=csharp;password=abc123"; //David Database
 
-        public static Questions Read(long _id)
+        public static Questions Read(int _id)
         {
             IDbConnection db = new SqlConnection(server);
             Questions Q = db.Get<Questions>(_id);
@@ -76,7 +77,6 @@ namespace Dapper_Project.Models
 
         }
         
-
         public static void Delete(int id)
         {
             IDbConnection db = new SqlConnection(server);
@@ -84,15 +84,48 @@ namespace Dapper_Project.Models
             //db.Delete(Answers.Delete(new Answers { ID = id }));
         }
 
-        public static List<Questions> Search(string search)
+        public static List<Questions> SearchTitle(string search)
         {
             IDbConnection db = new SqlConnection(server);
-            List<Questions> Q = db.Query<Questions>($"select * Questions where Title, Detail, Category LIKE '%{search}%'").AsList();
-            //Need text box linked to search button to return all items that match ^    ^       ^
+            List<Questions> Q = db.Query<Questions>($"select * from Questions where Title LIKE '%{search}%'").AsList();
 
             return Q;
         }
 
+        public static List<Questions> SearchDetail(string search)
+        {
+            IDbConnection db = new SqlConnection(server);
+            List<Questions> Q = db.Query<Questions>($"select * from Questions where Detail LIKE '%{search}%'").AsList();
 
+            return Q;
+        }
+
+        public static List<Questions> SearchCategory(string search)
+        {
+            IDbConnection db = new SqlConnection(server);
+            List<Questions> Q = db.Query<Questions>($"select * from Questions where Category LIKE '%{search}%'").AsList();
+
+            return Q;
+        }
+
+        public static List<Questions> SearchTags(string search)
+        {
+            IDbConnection db = new SqlConnection(server);
+            List<Questions> Q = db.Query<Questions>($"select * from Questions where Tags LIKE '%{search}%'").AsList();
+
+            return Q;
+        }
+
+        public static void MarkQuestionStatus(int ID, int status)
+        {
+            Questions q = Questions.Read(ID);
+            q.Status = status;
+            IDbConnection db = new SqlConnection(server);
+            db.Update(q);
+
+        }
+
+        //Sort by marked open status or marked closed status
+        //Don't allow answers to be posted on questions that are closed.
     }
 }

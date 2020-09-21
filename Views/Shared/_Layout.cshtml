@@ -33,7 +33,7 @@
                     <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
                     <li><a asp-area="" asp-controller="QA" asp-action="AskQuestion">Post a Question</a></li>
                     <li><a asp-area="" asp-controller="QA" asp-action="ReadQuestions">All Questions</a></li>
-
+                    <!--Answer only open questions-->
 
 
 
@@ -48,16 +48,19 @@
         @if (ViewBag.username != "")
         {
             <p align="right">You are logged in as: @ViewBag.username</p>
+            <p align="right"><a href="/home/changeUser/">Change User</a></p>
+
         }
         else
         {
             <a href="/home"> Please Login </a>
         }
         @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; 2020 - Slack Overload</p>
-        </footer>
+        <nav class="navbar navbar-inverse navbar-fixed-bottom">            
+            <footer>
+                <p>&copy; 2020 - Slack Overload</p>
+            </footer>
+        </nav>
     </div>
 
     <environment include="Development">

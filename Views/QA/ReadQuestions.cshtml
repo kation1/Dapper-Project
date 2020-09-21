@@ -3,38 +3,89 @@
     ViewData["Title"] = "ReadQuestions";
 }
 
-<h2>Read Questions</h2>
+<h1>Read Questions</h1>
+
+
+<b style="color:green">@ViewBag.SaveMessage</b>
+<b style="color:red">@ViewBag.DeleteMessage</b>
+<hr style="border:2px solid yellow;" />
+
+<form method="get" action="/QA/SearchQuestions">
+    <input type="text" name="Search" id="Search" />
+    <select name="Category" id="Category">
+        <option value="Category">Category</option>
+        <option value="Detail">Detail</option>
+        <option value="Title">Title</option>
+        <option value="Tags">Tags</option>
+    </select>
+
+    <input type="submit" value="Search" />
+</form>
+
+<br/>
 
 <table>
+    <tr>
+        <th>
+            Title
+        </th>
+        <th>
+            Detail
+        </th>
+        <th>
+            Category
+        </th>
+        <th>
+            Tags
+        </th>
+    </tr>
+
     @foreach (Questions questions in Model)
     {
 
-    <tr>
-        <td>
-            <a href="/QA/ReadAnswers?id=@questions.ID"> @questions.Title</a>  <br />
-        </td>
-        <td>
-            @questions.Detail <br />
-        </td>
-        <td>
-            @questions.Category <br />
-        </td>
-        <td>
-            @questions.Tags <br />
-        </td>
-        @if (ViewBag.username == questions.Username)
-        {
+
+        <tr>
             <td>
-                <a href="/QA/EditQuestion?=@questions.ID">Edit</a>
+                <a href="/QA/ReadAnswers?id=@questions.ID"> @questions.Title</a>  <br />
+            </td>
+
+
+            <td>
+                @questions.Detail <br />
+            </td>
+
+            <td>
+                @questions.Category <br />
             </td>
             <td>
-                <a href="/QA/RemoveQuestion?=@questions.ID">Delete</a>
+                @questions.Tags <br />
             </td>
-        }
-    </tr>
+            @if (ViewBag.username == questions.Username || ViewBag.username == "admin")
+            {
+                <td>
+                    <a href="/QA/EditQuestion?=@questions.ID"><button1>Edit</button1></a>
+                </td>
+                <td>
+                    <a href="/QA/RemoveQuestion?=@questions.ID"><button2>Delete</button2></a>
+                </td>
+                <td>
+                    @if (questions.Status == 1)
+                    {
+                        <a href="/QA/CompletionStatus?=@questions.ID&status=0"><button3>Mark Closed</button3></a>}
+                    @if (questions.Status == 0)
+                    {
+                        <a href="/QA/CompletionStatus?=@questions.ID&status=1"><button3>Mark Open</button3></a>}
+                </td>
+            }
+
+
+        </tr>
+
+
     }
 </table>
 
 <br />
+<br />
+<br />
 
-<input type="button" name="Search" value="Search" />

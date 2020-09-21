@@ -1,0 +1,43 @@
+﻿@model Thread
+@{
+    ViewData["Title"] = "EditAnswer";
+}
+
+<h1>Edit Answer</h1>
+<b style="color:green">@ViewBag.Message</b>
+<hr style="border:2px solid yellow;" />
+
+<form method="post" action="/QA/UpdateAnswer">
+
+    <label>Question Title:</label> @Model.Q.Title
+    <br />
+    <br />
+    <br />
+    <label>Question Body:</label> @Model.Q.Detail 
+    <br />
+    <br />
+    <br />
+    <table>
+        @foreach (Answers a in Model.A)
+        {
+            if (a.ID == ViewBag.ID)
+            {
+                <tr>
+                    <td>
+
+                        <label>Details:</label> <textarea name="detail" id="detail">@a.Detail</textarea>
+
+                    </td>
+                </tr>
+            }
+
+        }
+
+    </table>
+
+    <input type="hidden" name="ID" id="ID" value="@ViewBag.ID" />
+    <input type="hidden" name="username" id="username" value="@ViewBag.username" />
+    <br />
+    <input type="submit" value="Submit" />
+
+</form>
